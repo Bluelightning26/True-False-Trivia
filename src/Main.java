@@ -1,3 +1,4 @@
+import javax.swing.text.html.StyleSheet;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -27,6 +28,9 @@ class Trivia
         System.out.println("1. Space");
         System.out.println("2. Minecraft");
         System.out.println("3. United States");
+        System.out.println("4. World");
+        System.out.println("5. Country Capitals");
+        System.out.println("6. City Locations");
         triviaChoice = sc.nextInt();
         System.out.println(Gap);
 
@@ -265,6 +269,235 @@ class Trivia
         }
 
 
+
+        //World Trivia
+        if (triviaChoice == 4)
+        {
+        System.out.println("World 🌎 Trivia Selected!\n\n");
+
+
+        for (int i = 1; i <= 3; i++)
+            {
+
+
+            trivQ = rand.nextInt(8)+1;
+
+            //Question Bank
+            switch (trivQ)
+                {
+                case 1:
+                    System.out.println("The longest river in the world is the Rio Grande...\n");
+                    answer = false;
+                    break;
+
+                case 2:
+                    System.out.println("The world's largest producer of coffee is Brazil...\n");
+                    answer = true;
+                    break;
+
+                case 3:
+                    System.out.println("Bolivia has 36 official languages...\n");
+                    answer = true;
+                    break;
+
+                case 4:
+                    System.out.println("Indonesia has the most active volcanoes of any country...\n");
+                    answer = true;
+                    break;
+
+                case 5:
+                    System.out.println("Russia has the most natural lakes...\n");
+                    answer = false;
+                    break;
+
+                case 6:
+                    System.out.println("The United Kingdom is comprised of three countries...\n");
+                    answer = false;
+                    break;
+
+                case 7:
+                    System.out.println("England uses km/h (Kilometers per Hour) when enforcing speed limits...\n");
+                    answer = false;
+                    break;
+
+                case 8:
+                    System.out.println("Angel Falls located in Venezuela are the tallest in the world...\n");
+                    answer = true;
+                    break;
+
+                default:
+                }
+
+            System.out.println("Answer true or false");
+            response = sc.nextBoolean();
+
+            if( answer == response )
+                {
+                System.out.println("Correct!");
+                }
+            else
+                {
+                System.out.println("Wrong :(");
+                }
+
+            System.out.println(Gap);
+            }
+        }
+
+
+
+        //Country Capital Trivia
+        if (triviaChoice == 5)
+        {
+        System.out.println("World 🌎 Trivia Selected!\n\n");
+
+
+        for (int i = 1; i <= 3; i++)
+            {
+
+
+            trivQ = rand.nextInt(8)+1;
+
+            //Question Bank
+            switch (trivQ)
+                {
+                case 1:
+                    System.out.println("Toronto is the capital of Canada...\n");
+                    answer = false;
+                    break;
+
+                case 2:
+                    System.out.println("Shanghai is the capital of China...\n");
+                    answer = false;
+                    break;
+
+                case 3:
+                    System.out.println("Sydney is the capital of Australia...\n");
+                    answer = false;
+                    break;
+
+                case 4:
+                    System.out.println("Bamako is Mali's capital city...\n");
+                    answer = true;
+                    break;
+
+                case 5:
+                    System.out.println("Sāo Paulo is Brazil's capital...\n");
+                    answer = false;
+                    break;
+
+                case 6:
+                    System.out.println("The capital city of Russia is St. Petersburg...\n");
+                    answer = false;
+                    break;
+
+                case 7:
+                    System.out.println("Alexandria is NOT the capital of Egypt...\n");
+                    answer = true;
+                    break;
+
+                case 8:
+                    System.out.println("Manila is the capital of the Philippines...\n");
+                    answer = true;
+                    break;
+
+                default:
+                }
+
+            System.out.println("Answer true or false");
+            response = sc.nextBoolean();
+
+            if( answer == response )
+                {
+                System.out.println("Correct!");
+                }
+            else
+                {
+                System.out.println("Wrong :(");
+                }
+
+            System.out.println(Gap);
+            }
+        }
+
+
+
+        //City Location Trivia
+        if (triviaChoice == 6)
+        {
+        System.out.println("City Location Trivia Selected!\n\n");
+        System.out.println("Many city names are reused across the globe, this game attempts to avoid duplicates but only refers the most populated instance of a name in such a scenario");
+
+
+        for (int i = 1; i <= 3; i++)
+            {
+
+
+            trivQ = rand.nextInt(8)+1;
+
+            //Question Bank
+            switch (trivQ)
+                {
+                case 1:
+                    System.out.println("Bogotá is located in Colombia...\n");
+                    answer = true;
+                    break;
+
+                case 2:
+                    System.out.println("León is a French city...\n");
+                    answer = false;
+                    break;
+
+                case 3:
+                    System.out.println("Busan is Chinese...\n");
+                    answer = false;
+                    break;
+
+                case 4:
+                    System.out.println("Bamako is Mali's capital city...\n");
+                    answer = true;
+                    break;
+
+                case 5:
+                    System.out.println("Chennai is a city in Oman...\n");
+                    answer = false;
+                    break;
+
+                case 6:
+                    System.out.println("Zanzibar is located in Madagascar...\n");
+                    answer = false;
+                    break;
+
+                case 7:
+                    System.out.println("Cayenne is in French Guiana...\n");
+                    answer = true;
+                    break;
+
+                case 8:
+                    System.out.println("Manila is the capital of the Philippines...\n");
+                    answer = true;
+                    break;
+
+                default:
+                }
+
+            System.out.println("Answer true or false");
+            response = sc.nextBoolean();
+
+            if( answer == response )
+                {
+                System.out.println("Correct!");
+                }
+            else
+                {
+                System.out.println("Wrong :(");
+                }
+
+            System.out.println(Gap);
+            }
+        }
+
+
         System.out.println("Thanks for playing!");
         System.out.println("Feel free to play again to get other questions!");
 
@@ -279,6 +512,7 @@ class Trivia
             System.out.println(" " + System.getProperty("os.version"));
             System.out.println ("By: Blu");
             System.out.println ("Coded for Hack Club High Seas on November 28th 2024");
+            System.out.println("Update launched on December 4th 2024");
             }
 
     }
