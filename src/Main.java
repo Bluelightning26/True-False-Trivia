@@ -1,4 +1,3 @@
-import javax.swing.text.html.StyleSheet;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -31,6 +30,7 @@ class Trivia
         System.out.println("4. World");
         System.out.println("5. Country Capitals");
         System.out.println("6. City Locations");
+        System.out.println("7. Java");
         triviaChoice = sc.nextInt();
         System.out.println(Gap);
 
@@ -107,6 +107,23 @@ class Trivia
                 else
                     {
                     System.out.println("Wrong :(");
+
+                    //Give Correct Answer
+                    switch (trivQ)
+                        {
+                        case 1:
+                        {System.out.println("Fruit flies were launched by the USA in 1947!\n");}
+                        break;
+                        case 3:
+                        {System.out.println("We live in the great Milky Way Galaxy!\n");}
+                        break;
+                        case 5:
+                        {System.out.println("Venus while not the closest planet is the hottest!\n");}
+                        break;
+                        case 6:
+                        {System.out.println("The sun is the center of the solar system... not the Universe\n");}
+                        break;
+                        }
                     }
 
                 System.out.println(Gap);
@@ -491,6 +508,97 @@ class Trivia
             else
                 {
                 System.out.println("Wrong :(");
+                }
+
+            System.out.println(Gap);
+            }
+        }
+
+        //Java Trivia
+        if (triviaChoice == 7)
+        {
+        System.out.println("Java Trivia Selected!\n\n");
+
+
+        for (int i = 1; i <= 3; i++)
+            {
+
+
+            trivQ = rand.nextInt(8)+1;
+
+            //Question Bank
+            switch (trivQ)
+                {
+                case 1:
+                    System.out.println("Java is a high level object-orientated programming language...\n");
+                    answer = true;
+                    break;
+
+                case 2:
+                    System.out.println("Java's slogan is 'Write once, run Anywhere'...\n");
+                    answer = true;
+                    break;
+
+                case 3:
+                    System.out.println("Java was originally developed at Sun MiniSystems...\n");
+                    answer = false;
+                    break;
+
+                case 4:
+                    System.out.println("As of 2022, Java is the third most popular programming language...\n");
+                    answer = true;
+                    break;
+
+                case 5:
+                    System.out.println("Java is named after the Ancient City of Java located in modern day Djibouti...\n");
+                    answer = false;
+                    break;
+
+                case 6:
+                    System.out.println("Java is known for not being portable...\n");
+                    answer = false;
+                    break;
+
+                case 7:
+                    System.out.println("This program is written in java...\n");
+                    answer = true;
+                    break;
+
+                case 8:
+                    System.out.println("JDK stands for Java Debugging Kit...\n");
+                    answer = false;
+                    break;
+
+                default:
+                }
+
+            System.out.println("Answer true or false");
+            response = sc.nextBoolean();
+
+            if( answer == response )
+                {
+                System.out.println("Correct!");
+                }
+            else
+                {
+                System.out.println("Wrong :(\n");
+
+                //Give Correct Answer
+                switch (trivQ)
+                    {
+                    case 3:
+                        {System.out.println("Java was developed at Sun Microsystems!\n");}
+                        break;
+                    case 5:
+                        {System.out.println("Java is named after Java coffee - which originates on the Island of (Indonesia)!\n");}
+                        break;
+                    case 6:
+                        {System.out.println("Java is well known for it's portability!\n");}
+                        break;
+                    case 7:
+                        {System.out.println("JDK Stands for Java Development Kit!\n");}
+                        break;
+                    }
                 }
 
             System.out.println(Gap);
