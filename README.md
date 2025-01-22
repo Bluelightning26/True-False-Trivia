@@ -3,7 +3,7 @@
 ![](https://cloud-q8l5eqnpe-hack-club-bot.vercel.app/0truefalsetrivia.png)
 
 ## Trivia Question Genres
-1. Space*
+1. Space
 2. Minecraft
 3. United States
 4. World
@@ -11,7 +11,6 @@
 6. City Locations
 7. Java
 
-`*`= Genre has custom answers / facts to teach you if you get the question wrong! Coming to more genres soon!
 
 ## Directions
 
@@ -45,7 +44,7 @@
   - 8 questions to pull from per genre
 
 
-- Gives correct answer when incorrect
+- Gives correct custom answers when incorrect
   - Helps the user learn while using the program
 
 
