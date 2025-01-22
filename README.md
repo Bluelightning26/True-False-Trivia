@@ -45,12 +45,18 @@
   - 8 questions to pull from per genre
 
 
+- Gives correct answer when incorrect
+  - Helps the user learn while using the program
+
+
 - Random Question chosen pool every time
   - over 50 questions in entire pool
+
 
 - Methods employed
   - Code is reusable + repeatable
   - Swing can perform
+
 
 - A lot more :) Dig around the [source code](src/Trivia.java) to see!
 
@@ -76,9 +82,39 @@ and having to go through trial and error many times as I teach myself how the Sw
 ## Next Steps
 ### I hope to keep expanding on this project! Here are my ideas on what to add...
 1. [x] Implement a Colored UI + Custom Fonts
-2. [x] Add progress Bar **WIP**
-3. [ ] Add slider for the user to customize number of questions asked **WIP**
+2. [x] Add progress Bar
+3. [x] Add slider for the user to customize number of questions asked
 4. [ ] Increase question pool size
 5. [ ] Create an ALL trivia option where questions are pulled from the entire pool
  
-## Version 2.0
+## Version 2.1
+
+## Changelog
+- v1.0
+  - Created Base Game as a CLI program!
+
+
+- v1.1
+  - 3 more genres of trivia: 
+    - World
+    - Country Capitals
+    - City Locations!
+
+
+- v1.2
+  - Added Java trivia 
+  - Correct answers when ‘false’ questions are answered incorrectly for clarification and knowledge for the user 
+    - Java and Space topics only
+
+- v2.0
+  - Revamped everything! (LARGE UPDATE)
+  - Code is in methods
+  - GUI based
+  - Created Detailed Readme to explain project
+
+
+- v2.1
+  - Added correct answers for all topics
+  - Fixed incorrect phrasing in some questions
+  - Added slider functionality
+    - User can choose number of questions

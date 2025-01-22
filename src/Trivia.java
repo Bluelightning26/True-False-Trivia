@@ -1,8 +1,6 @@
-import javax.sound.midi.SysexMessage;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.plaf.basic.BasicProgressBarUI;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,15 +14,15 @@ public class Trivia implements ActionListener
 
     static final Random ra = new Random();
 
-    float version = 2.0f;
-    int questions = 4;
+    float version = 2.1f;
+    int questions;
 
     int triviaChoice = 0;
     int trivQ;
     boolean answer;
     boolean selectedAnswer;
     boolean firstTime = true;
-    int increment = 100/questions;
+    int increment;
 
     JFrame frame;
     JPanel panel;
@@ -50,8 +48,10 @@ public class Trivia implements ActionListener
     JProgressBar progressBar;
 
     JSlider slider;
+    JLabel sliderInstructions;
 
-    public Trivia() {
+    public Trivia()
+    {
 
         frame = new JFrame("Trivia");
         frame.setBackground(pink);
@@ -93,13 +93,13 @@ public class Trivia implements ActionListener
         tJava.setFont(new Font("American Typewriter", Font.BOLD, 30));
 
         prompt = new JLabel();
-        prompt.setFont(new Font("American Typewriter", Font.CENTER_BASELINE, 30));
+        prompt.setFont(new Font("American Typewriter", Font.BOLD, 30));
 
         question = new JLabel("Select Trivia Category");
-        question.setFont(new Font("American Typewriter", Font.CENTER_BASELINE, 30));
+        question.setFont(new Font("American Typewriter", Font.BOLD, 30));
 
-        ans = new JLabel();
-        ans.setFont(new Font("American Typewriter", Font.CENTER_BASELINE, 15));
+        ans = new JLabel("Enter number of questions");
+        ans.setFont(new Font("American Typewriter", Font.BOLD, 15));
         ans.setVisible(false);
 
 
@@ -125,26 +125,32 @@ public class Trivia implements ActionListener
         progressBar.setOpaque(true);
         progressBar.setFont(new Font("Monospaced", Font.BOLD, 30));
         progressBar.setValue(0);
+        progressBar.setVisible(false);
 
-        //Testing around! Will be added soon
-//        slider = new JSlider();
-//        slider.setPaintTicks(true);
-//        slider.setPaintLabels(true);
-//        slider.setMajorTickSpacing(2);
-//        slider.setMinorTickSpacing(1);
-//        slider.setValue(6);
-//        slider.setMinimum(4);
-//        slider.setMaximum(20);
-//        slider.setSnapToTicks(true);
-//
-//        slider.addChangeListener(new ChangeListener() {
-//        @Override
-//        public void stateChanged(ChangeEvent e) {
-//            System.out.println(slider.getValue());
-//            //temp
-//            int a = slider.getValue();
-//        }
-//        });
+
+        slider = new JSlider();
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setMajorTickSpacing(2);
+        slider.setMinorTickSpacing(1);
+        slider.setValue(6);
+        slider.setMinimum(4);
+        slider.setMaximum(10);
+        slider.setSnapToTicks(true);
+
+        sliderInstructions = new JLabel("Number of Questions:");
+        sliderInstructions.setFont(new Font("Monospaced", Font.BOLD, 30));
+        sliderInstructions.setForeground(white);
+
+        slider.addChangeListener(new ChangeListener() {
+        @Override
+        public void stateChanged(ChangeEvent e) {
+            System.out.println(slider.getValue());
+            //temp
+            questions = slider.getValue();
+            increment = 100/questions;
+        }
+        });
 
 
         panel = new JPanel();
@@ -169,7 +175,9 @@ public class Trivia implements ActionListener
         panel.add(ans);
         panel.add(nextButton);
         panel.add(progressBar);
-        //panel.add(slider);
+        panel.add(sliderInstructions);
+        panel.add(slider);
+
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setSize(1640, 1480);
@@ -180,9 +188,11 @@ public class Trivia implements ActionListener
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         new Trivia();
     }
+
 
 
     /*
@@ -197,7 +207,9 @@ System.out.println("Feel free to play again to get other questions!");
     */
 
 
-    public void menuSelection() {
+
+    public void menuSelection()
+    {
 
         if (firstTime)
             {
@@ -211,13 +223,19 @@ System.out.println("Feel free to play again to get other questions!");
             tCityLocation.setVisible(false);
             tJava.setVisible(false);
 
-            prompt.setFont(new Font("American Typewriter", Font.CENTER_BASELINE, 15));
-            question.setFont(new Font("American Typewriter", Font.CENTER_BASELINE, 20));
+            slider.setVisible(false);
+            panel.remove(slider);
+            panel.remove(sliderInstructions);
+
+            prompt.setFont(new Font("American Typewriter", Font.BOLD, 15));
+            question.setFont(new Font("American Typewriter", Font.BOLD, 20));
             frame.setSize(800, 1480);
 
             trueButton.setVisible(true);
             falseButton.setVisible(true);
             nextButton.setVisible(true);
+
+            progressBar.setVisible(false);
 
             firstTime = false;
             }
@@ -257,7 +275,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void menuAns() {
+
+    public void menuAns()
+    {
 
         switch (triviaChoice)
             {
@@ -265,19 +285,19 @@ System.out.println("Feel free to play again to get other questions!");
                 SpaceTriviaAns();
                 break;
             case 2:
-                FinishMinecraftTriviaAns();
+                MinecraftTriviaAns();
                 break;
             case 3:
-                FinishUnitedStatesTriviaAns();
+                UnitedStatesTriviaAns();
                 break;
             case 4:
-                FinishWorldTriviaAns();
+                WorldTriviaAns();
                 break;
             case 5:
-                FinishCountryCapitalTriviaAns();
+                CountryCapitalTriviaAns();
                 break;
             case 6:
-                FinishCityLocationTriviaAns();
+                CityLocationTriviaAns();
                 break;
             case 7:
                 JavaTriviaAns();
@@ -287,7 +307,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void SpaceTrivia() {
+
+    public void SpaceTrivia()
+    {
 
         prompt.setText("Space Trivia Selected!");
         ans.setVisible(false);
@@ -345,7 +367,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void SpaceTriviaAns() {
+
+    public void SpaceTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -377,7 +401,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void MinecraftTrivia() {
+
+    public void MinecraftTrivia()
+    {
 
         prompt.setText("Minecraft Trivia Selected!");
         ans.setVisible(false);
@@ -415,7 +441,7 @@ System.out.println("Feel free to play again to get other questions!");
                 break;
 
             case 6:
-                question.setText("A Glistering Melon Slice can be used to make a Mundane Potion");
+                question.setText("A Glistering Melon Slice can be used to make an Awkward Potion");
                 answer = false;
                 break;
 
@@ -435,7 +461,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void FinishMinecraftTriviaAns() {
+
+    public void MinecraftTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -447,8 +475,17 @@ System.out.println("Feel free to play again to get other questions!");
 
             switch (trivQ)
                 {
-                case 0:
-                    ans.setText("Text Goes Here!");
+                case 1:
+                    ans.setText("The full release was in 2011, the alpha was in 2009!");
+                    break;
+                case 3:
+                    ans.setText("Hardcore, survival, adventure, creative!");
+                    break;
+                case 6:
+                    ans.setText("Mundane potions and potions of healing");
+                    break;
+                case 7:
+                    ans.setText("No... it's a carrot... you eat it");
                     break;
                 }
             }
@@ -458,7 +495,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void UnitedStatesTrivia() {
+
+    public void UnitedStatesTrivia()
+    {
 
         prompt.setText("United States Trivia Selected!");
         ans.setVisible(false);
@@ -492,7 +531,7 @@ System.out.println("Feel free to play again to get other questions!");
                 break;
 
             case 5:
-                question.setText("The oldest European-founded city in the US is located in Virginia");
+                question.setText("The oldest European-founded city in a US state is located in Virginia");
                 answer = false;
                 break;
 
@@ -517,7 +556,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void FinishUnitedStatesTriviaAns() {
+
+    public void UnitedStatesTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -529,8 +570,17 @@ System.out.println("Feel free to play again to get other questions!");
 
             switch (trivQ)
                 {
-                case 0:
-                    ans.setText("Text Goes Here!");
+                case 1:
+                    ans.setText("John F Kennedy was the president, FDR was there in WWII");
+                    break;
+                case 5:
+                    ans.setText("Saint Augustine, Florida dates back to the Spanish in 1565!");
+                    break;
+                case 6:
+                    ans.setText("July 4, 1776!");
+                    break;
+                case 7:
+                    ans.setText("Alaska tops this leaderboard");
                     break;
                 }
             }
@@ -540,7 +590,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void WorldTrivia() {
+
+    public void WorldTrivia()
+    {
 
         prompt.setText("World Trivia Selected!");
         ans.setVisible(false);
@@ -578,7 +630,7 @@ System.out.println("Feel free to play again to get other questions!");
                 break;
 
             case 6:
-                question.setText("The United Kingdom is comprised of three countries");
+                question.setText("Great Britain is comprised of three countries");
                 answer = false;
                 break;
 
@@ -598,7 +650,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void FinishWorldTriviaAns() {
+
+    public void WorldTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -610,8 +664,17 @@ System.out.println("Feel free to play again to get other questions!");
 
             switch (trivQ)
                 {
-                case 0:
-                    ans.setText("Text Goes Here!");
+                case 1:
+                    ans.setText("The Nile River in Africa tops of this list, with the Amazon a close second");
+                    break;
+                case 5:
+                    ans.setText("Canada is vastly ahead of the competition in this category");
+                    break;
+                case 6:
+                    ans.setText("England, Scotland, Wales, and Northern Ireland make up four in Great Britain");
+                    break;
+                case 7:
+                    ans.setText("Nope, they use m/ph, but oddly they introduced k/ph to most colonies");
                     break;
                 }
             }
@@ -621,7 +684,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void CountryCapitalTrivia() {
+
+    public void CountryCapitalTrivia()
+    {
 
         prompt.setText("Country Capital Trivia Selected!");
         ans.setVisible(false);
@@ -679,7 +744,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void FinishCountryCapitalTriviaAns() {
+
+    public void CountryCapitalTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -691,8 +758,20 @@ System.out.println("Feel free to play again to get other questions!");
 
             switch (trivQ)
                 {
-                case 0:
-                    ans.setText("Text Goes Here!");
+                case 1:
+                    ans.setText("Ottawa, Canada!");
+                    break;
+                case 2:
+                    ans.setText("Beijing, China!");
+                    break;
+                case 3:
+                    ans.setText("Canberra, Australia... have you heard of them?");
+                    break;
+                case 5:
+                    ans.setText("Brasília, Brazil");
+                    break;
+                case 6:
+                    ans.setText("Moscow, Russia");
                     break;
                 }
             }
@@ -702,7 +781,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void CityLocationTrivia() {
+
+    public void CityLocationTrivia()
+    {
 
         prompt.setText("City Location Trivia Selected!");
         ans.setVisible(false);
@@ -760,7 +841,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void FinishCityLocationTriviaAns() {
+
+    public void CityLocationTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -772,8 +855,17 @@ System.out.println("Feel free to play again to get other questions!");
 
             switch (trivQ)
                 {
-                case 0:
-                    ans.setText("Text Goes Here!");
+                case 2:
+                    ans.setText("The two famous León's are from Spain and Mexico");
+                    break;
+                case 3:
+                    ans.setText("Second most populous South Korean city!");
+                    break;
+                case 5:
+                    ans.setText("Chennai, India!");
+                    break;
+                case 6:
+                    ans.setText("Zanzibar is Tanzanian!");
                     break;
                 }
             }
@@ -783,7 +875,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void JavaTrivia() {
+
+    public void JavaTrivia()
+    {
 
         prompt.setText("Java Trivia Selected!");
         ans.setVisible(false);
@@ -841,7 +935,9 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void JavaTriviaAns() {
+
+    public void JavaTriviaAns()
+    {
 
         if (selectedAnswer == answer)
             {
@@ -881,7 +977,10 @@ System.out.println("Feel free to play again to get other questions!");
     }
 
 
-    public void End() {
+
+    public void End()
+    {
+
         trueButton.setVisible(false);
         falseButton.setVisible(false);
         nextButton.setVisible(false);
@@ -939,7 +1038,7 @@ System.out.println("Feel free to play again to get other questions!");
         label3.setText("Operating System: " + System.getProperty("os.name") + " " + System.getProperty("os.version"));
         label5.setText("Architecture: " + System.getProperty("os.arch"));
         label6.setText("By: Blu");
-        label7.setText("Coded for Hack Club High Seas on January 20th 2025");
+        label7.setText("Coded for Hack Club High Seas on January 21st 2025");
 
 
         System.out.println("\n\n\n");
@@ -949,7 +1048,7 @@ System.out.println("Feel free to play again to get other questions!");
         System.out.println(" " + System.getProperty("os.version"));
         System.out.println("Architecture: " + System.getProperty("os.arch"));
         System.out.println("By: Blu");
-        System.out.println("Coded for Hack Club High Seas on January 20th 2025");
+        System.out.println("Coded for Hack Club High Seas on January 21st 2025");
 
         //quitButton.setEnabled(true);
     }
@@ -957,7 +1056,9 @@ System.out.println("Feel free to play again to get other questions!");
 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
+
         if (e.getSource() == tSpace)
             {
             triviaChoice = 1;
@@ -1031,4 +1132,6 @@ System.out.println("Feel free to play again to get other questions!");
         menuSelection();
         }
     }
-    }
+
+}
+//Thanks for looking through the src! Any suggestions? DM me :)
